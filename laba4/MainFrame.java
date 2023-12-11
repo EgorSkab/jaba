@@ -74,7 +74,7 @@ public class MainFrame extends JFrame {
             }
         };
 
-        Action saveGraphicsAction = new AbstractAction("Save to graphics file") {
+        /*Action saveGraphicsAction = new AbstractAction("Save to graphics file") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (fileChooser == null) {
@@ -86,11 +86,11 @@ public class MainFrame extends JFrame {
                     saveToGraphicsFile(fileChooser.getSelectedFile());
                 }
             }
-        };
+        };*/
 
-        saveToGraphicsItem = new JMenuItem(saveGraphicsAction);
-        fileMenu.add(saveToGraphicsItem);
-        saveToGraphicsItem.setEnabled(false);
+        //saveToGraphicsItem = new JMenuItem(saveGraphicsAction);
+        //fileMenu.add(saveToGraphicsItem);
+        //saveToGraphicsItem.setEnabled(false);
 
 // Добавить соответствующий элемент меню
         fileMenu.add(openGraphicsAction);
