@@ -548,9 +548,9 @@ public class GraphicsDisplay extends JPanel {
         canvas.draw(new Line2D.Double(this.xyToPoint(this.viewport[0][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.1), this.xyToPoint(this.viewport[1][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.1)));
         canvas.draw(new Line2D.Double(this.xyToPoint(this.viewport[0][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.5), this.xyToPoint(this.viewport[1][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.5)));
         canvas.draw(new Line2D.Double(this.xyToPoint(this.viewport[0][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.9), this.xyToPoint(this.viewport[1][0], this.viewport[0][1] + (this.viewport[1][1] - this.viewport[0][1]) * 0.9)));
-        canvas.drawString("10%", 20, (int) (getHeight() * 0.1));
+        canvas.drawString("90%", 20, (int) (getHeight() * 0.1));
         canvas.drawString("50%", 20, (int) (getHeight() * 0.5));
-        canvas.drawString("90%", 20, (int) (getHeight() * 0.9));
+        canvas.drawString("10%", 20, (int) (getHeight() * 0.9));
     }
 
     public class MouseHandler extends MouseAdapter {
