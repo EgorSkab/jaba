@@ -621,21 +621,7 @@ public class GraphicsDisplay extends JPanel {
         }
 
         public void mouseDragged(MouseEvent ev) {
-            if (changeMode) {
-                double[] currentPoint = translatePointToXY(ev.getX(), ev.getY());
-                double newY = currentPoint[1];
-
-                if (newY > viewport[0][1]) {
-                    newY = viewport[0][1];
-                }
-
-                if (newY < viewport[1][1]) {
-                    newY = viewport[1][1];
-                }
-
-                graphicsData[selectedMarker][1] = newY;
-                repaint();
-            } else {
+            
                 double width = (double) ev.getX() - selectionRect.getX();
                 if (width < 5.0) {
                     width = 5.0;
@@ -648,7 +634,7 @@ public class GraphicsDisplay extends JPanel {
 
                 selectionRect.setFrame(selectionRect.getX(), selectionRect.getY(), width, height);
                 repaint();
-            }
+            
 
         }
     }
