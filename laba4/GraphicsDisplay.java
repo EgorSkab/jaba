@@ -21,7 +21,6 @@ import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 
 public class GraphicsDisplay extends JPanel {
@@ -145,10 +144,6 @@ public class GraphicsDisplay extends JPanel {
     public void setRotated(boolean selected) {
         isRotated = selected;
         repaint();
-    }
-
-    public double[][] getGraphicsData() {
-        return Arrays.copyOf(graphicsData, graphicsData.length);
     }
 
     // Метод отображения всего компонента, содержащего график
@@ -417,26 +412,13 @@ public class GraphicsDisplay extends JPanel {
 
     private boolean isAscending(double[] point) {
         double average = 0.0D;
-        for (int i = 0; i < graphicsData.length; i++) {
-            average = average + graphicsData[i][1];
+        for (double[] graphicsDatum : graphicsData) {
+            average = average + graphicsDatum[1];
         }
 
         average = average / graphicsData.length;
 
         return point[1] > average;
-    }
-
-    private boolean isAscending(String num) {
-        return (
-                num.substring(0, num.indexOf(".")) +
-                        num.substring(num.indexOf(".") + 1)
-        )
-                .equals(
-                        Arrays.stream(num.split(""))
-                                .filter(s -> !s.equals("."))
-                                .sorted()
-                                .collect(Collectors.joining())
-                );
     }
 
     private Point2D.Double constructPoint(
@@ -621,20 +603,20 @@ public class GraphicsDisplay extends JPanel {
         }
 
         public void mouseDragged(MouseEvent ev) {
-            
-                double width = (double) ev.getX() - selectionRect.getX();
-                if (width < 5.0) {
-                    width = 5.0;
-                }
 
-                double height = (double) ev.getY() - selectionRect.getY();
-                if (height < 5.0) {
-                    height = 5.0;
-                }
+            double width = (double) ev.getX() - selectionRect.getX();
+            if (width < 5.0) {
+                width = 5.0;
+            }
 
-                selectionRect.setFrame(selectionRect.getX(), selectionRect.getY(), width, height);
-                repaint();
-            
+            double height = (double) ev.getY() - selectionRect.getY();
+            if (height < 5.0) {
+                height = 5.0;
+            }
+
+            selectionRect.setFrame(selectionRect.getX(), selectionRect.getY(), width, height);
+            repaint();
+
 
         }
     }
