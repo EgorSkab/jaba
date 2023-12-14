@@ -4,11 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serial;
 import javax.swing.AbstractAction;
@@ -18,7 +16,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -36,7 +33,6 @@ public class MainFrame extends JFrame {
     private final JCheckBoxMenuItem showMarkersMenuItem;
     private final JCheckBoxMenuItem showFillingMenuItem;
     private final JCheckBoxMenuItem rotatedMenuItem;
-    private final JMenuItem saveToGraphicsItem;
     // Компонент-отображатель графика
     private final GraphicsDisplay display = new GraphicsDisplay();
     // Флаг, указывающий на загруженность данных графика
@@ -73,24 +69,6 @@ public class MainFrame extends JFrame {
                 }
             }
         };
-
-        /*Action saveGraphicsAction = new AbstractAction("Save to graphics file") {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (fileChooser == null) {
-                    fileChooser = new JFileChooser();
-                    fileChooser.setCurrentDirectory(new File("."));
-                }
-                if (fileChooser.showSaveDialog(MainFrame.this) ==
-                        JFileChooser.APPROVE_OPTION) {
-                    saveToGraphicsFile(fileChooser.getSelectedFile());
-                }
-            }
-        };*/
-
-        //saveToGraphicsItem = new JMenuItem(saveGraphicsAction);
-        //fileMenu.add(saveToGraphicsItem);
-        //saveToGraphicsItem.setEnabled(false);
 
 // Добавить соответствующий элемент меню
         fileMenu.add(openGraphicsAction);
@@ -219,19 +197,6 @@ Double.SIZE/8 байт;
         }
     }
 
-    protected void saveToGraphicsFile(File selectedFile) {
-        try {
-            DataOutputStream out = new DataOutputStream(new
-                    FileOutputStream(selectedFile));
-            for (int i = 0; i < display.getGraphicsData().length; i++) {
-                out.writeDouble(display.getGraphicsData()[i][0]);
-                out.writeDouble(display.getGraphicsData()[i][1]);
-            }
-            out.close();
-        } catch (Exception ignored) {
-        }
-    }
-
     public static void main(String[] args) {
 // Создать и показать экземпляр главного окна приложения
         MainFrame frame = new MainFrame();
@@ -249,7 +214,6 @@ Double.SIZE/8 байт;
             showMarkersMenuItem.setEnabled(fileLoaded);
             showFillingMenuItem.setEnabled(fileLoaded);
             rotatedMenuItem.setEnabled(fileLoaded);
-            saveToGraphicsItem.setEnabled(fileLoaded);
         }
 
         // Обработчик, вызываемый после того, как меню исчезло с экрана
